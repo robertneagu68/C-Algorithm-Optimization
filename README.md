@@ -15,15 +15,13 @@ In programul solver_blas.c am declarat 3 variabile, leftProduct, partialLeftProd
 
 ANALIZA COMPARATIVA A PERFORMANTEI:
 
-ELEMENTE   NEOPT	   OPT_M	     BLAS
-200	  	   0.155769	   0.031623	     0.005642
-400	   	   1.354642	   0.314716	     0.032251
-600	       4.668956	   1.636038	     0.101942
-800	       11.359429   2.652237		 0.221824
-1000	   20.623531   4.51518		 0.429972
-1200	   36.888802   8.610617		 0.716185
-1400	   62.166454   14.39005		 1.103358
-1600	   108.232964  28.552423	 1.664978
-
+ELEMENTE: 200 NEOPT: 0.155769 OPT_M: 0.031623 BLAS: 0.005642
+ELEMENTE: 400 NEOPT: 1.354642 OPT_M: 0.314716 BLAS: 0.032251
+ELEMENTE: 600 NEOPT: 4.668956 OPT_M: 1.636038 BLAS: 0.101942
+ELEMENTE: 800 NEOPT: 11.359429 OPT_M: 2.652237 BLAS: 0.221824
+ELEMENTE: 1000 NEOPT: 20.623531 OPT_M: 4.51518 BLAS: 0.429972
+ELEMENTE: 1200 NEOPT: 36.888802 OPT_M: 8.610617 BLAS: 0.716185
+ELEMENTE: 1400 NEOPT: 62.166454 OPT_M: 14.39005 BLAS: 1.103358
+ELEMENTE: 1600 NEOPT: 108.232964 OPT_M: 28.552423 BLAS: 1.664978
 
 In setul de valori anterior se poate observa cum varianta optimizata manual, opt_m, este mult mai rapida, mai ales in cazul cu cel mai multe elemente (1600), timpul de rulare al algoritmului opt_m fiind de 3.85 ori mai scurt fata de cel neoptimizat, al inmultirii clasice al matricelor. Dintre toate 3 variantele, se poate observa foarte clar performanta deosebita a variantei BLAS, unde pentru 1600 de elemente, rularea algoritmului s-a produs doar in 1.66 secunde. Din analiza graficului se poate observa cum cresc timpii de rulare al algoritmilor neopt si opt_m in jurul valorilor de 1200, respectiv 1400 de elemente, probabil din posibila depasire a liniei cache-ului. In varianta neoptimizata, se poate observa cum timpul incepe sa creasca mult mai devreme, chiar de la aproximativ 1000 de elemente, in detrimentul algoritmului optimizat manual, unde timpul incepe sa creasca semnificativ in jurul valorii de 1400+ de elemente. Timpul variantei BLAS este tot foarte mic, in ciuda numarului mare de elemente, deoarece foloseste parcurgerea matricelor pe blocuri, astfel fiind folosit cache-ul foarte eficient.
